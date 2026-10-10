@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Interactive 3D Building Explorer built with Three.js, featuring floor visibility, floor isolation, and component inspection."
+    />
+
+    <title>3D Building Explorer</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div>
+          <h1>Building Explorer</h1>
+          <p>Interactive 3D architectural viewer</p>
+        </div>
+
+        <span class="status">3D VIEWER</span>
+      </header>
+
+      <main class="viewer-layout">
+        <!-- 3D VIEWER -->
+        <section class="viewer" aria-label="3D building viewer">
+          <div id="canvas-container"></div>
+
+          <div class="viewer-label">BUILDING MODEL · PREVIEW</div>
+
+          <div class="viewer-help">
+            Drag to rotate · Scroll to zoom · Click components to inspect
+          </div>
+        </section>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+          <h2>Building Details</h2>
+          <p class="muted">Procedural architectural model</p>
+
+          <div class="info-card">
+            <span>Building type</span>
+            <strong>Residential</strong>
+          </div>
+
+          <div class="info-card">
+            <span>Number of floors</span>
+            <strong>3 floors</strong>
+          </div>
+
+          <div class="info-card">
+            <span>Viewer status</span>
+            <strong id="viewer-status">Initializing...</strong>
+          </div>
+
+          <!-- FLOOR VISIBILITY -->
+          <h3>Floor Visibility</h3>
+
+          <label class="floor-control">
+            <input type="checkbox" id="floor-1" checked />
+            Ground Floor
+          </label>
+
+          <label class="floor-control">
+            <input type="checkbox" id="floor-2" checked />
+            First Floor
+          </label>
+
+          <label class="floor-control">
+            <input type="checkbox" id="floor-3" checked />
+            Second Floor
+          </label>
+
+          <label class="floor-control">
+            <input type="checkbox" id="roof-toggle" checked />
+            Roof
+          </label>
+
+          <!-- FLOOR ISOLATION -->
+          <div class="floor-actions">
+            <button id="isolate-floor-1" type="button">
+              Isolate Ground Floor
+            </button>
+
+            <button id="isolate-floor-2" type="button">
+              Isolate First Floor
+            </button>
+
+            <button id="isolate-floor-3" type="button">
+              Isolate Second Floor
+            </button>
+
+            <button id="show-all-floors" type="button">Show All Floors</button>
+          </div>
+
+          <!-- COMPONENT INSPECTOR -->
+          <h3>Component Inspector</h3>
+
+          <div class="info-card">
+            <span>Selected component</span>
+            <strong id="component-name">None selected</strong>
+          </div>
+
+          <div class="info-card">
+            <span>Dimensions (W × H × D)</span>
+            <strong id="component-dimensions">—</strong>
+          </div>
+
+          <p class="sidebar-note">
+            Click a wall, window, floor slab, or roof to inspect its name and
+            dimensions.
+          </p>
+
+          <!-- CAMERA CONTROLS -->
+          <h3>Camera Controls</h3>
+
+          <button id="reset-camera" class="reset-button" type="button">
+            Reset Camera
+          </button>
+
+          <p class="sidebar-note">
+            This is a demonstration model. Real building files and advanced BIM
+            properties can be added in future versions.
+          </p>
+        </aside>
+      </main>
+
+      <footer class="footer">
+        <p>3D Building Explorer · Built with Three.js</p>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,358 @@
+/* =========================================
+   1. GLOBAL STYLES
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #101722;
+  color: #f1f5f9;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  border-radius: 8px;
+  padding: 11px 14px;
+  background: #3b82f6;
+  color: #ffffff;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+button:hover {
+  background: #2563eb;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #93c5fd;
+  outline-offset: 3px;
+}
+
+/* =========================================
+   2. APP HEADER
+========================================= */
+
+#app {
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 24px;
+  background: #182332;
+  border-bottom: 1px solid #2b394a;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.topbar p {
+  margin: 8px 0 0;
+  color: #aab8c8;
+  font-size: 14px;
+}
+
+.status {
+  flex-shrink: 0;
+  padding: 7px 11px;
+  border: 1px solid #315b4a;
+  border-radius: 20px;
+  background: #183c31;
+  color: #86efac;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* =========================================
+   3. MAIN LAYOUT
+========================================= */
+
+.viewer-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 18px;
+  padding: 18px;
+  align-items: start;
+}
+
+/* =========================================
+   4. 3D VIEWER
+========================================= */
+
+#app .viewer-layout > .viewer {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 560px;
+  min-height: 560px;
+  align-self: start;
+  overflow: hidden;
+  border: 1px solid #2b394a;
+  border-radius: 14px;
+  background: #dce5ed;
+}
+
+#app .viewer #canvas-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+
+#app .viewer #canvas-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.viewer-label,
+.viewer-help {
+  position: absolute;
+  z-index: 2;
+  padding: 9px 12px;
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 8px;
+  background: rgb(16 23 34 / 80%);
+  color: #ffffff;
+  font-size: 11px;
+  pointer-events: none;
+}
+
+.viewer-label {
+  top: 14px;
+  left: 14px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+}
+
+.viewer-help {
+  bottom: 14px;
+  left: 14px;
+  color: #dbeafe;
+}
+
+/* =========================================
+   5. SIDEBAR
+========================================= */
+
+.sidebar {
+  min-width: 0;
+  padding: 20px;
+  background: #182332;
+  border: 1px solid #2b394a;
+  border-radius: 14px;
+}
+
+.sidebar h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.sidebar h3 {
+  margin: 25px 0 12px;
+  font-size: 15px;
+}
+
+.muted {
+  margin: 0 0 18px;
+  color: #aab8c8;
+  font-size: 13px;
+}
+
+/* =========================================
+   6. INFORMATION CARDS
+========================================= */
+
+.info-card {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+  margin: 10px 0;
+  padding: 12px;
+  background: #111b29;
+  border: 1px solid #2b394a;
+  border-radius: 9px;
+}
+
+.info-card span {
+  color: #9caec1;
+  font-size: 12px;
+}
+
+.info-card strong {
+  color: #f1f5f9;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================
+   7. FLOOR CHECKBOXES
+========================================= */
+
+.floor-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 13px 0;
+  color: #d5deea;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.floor-control input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: #3b82f6;
+  cursor: pointer;
+}
+
+/* =========================================
+   8. FLOOR ISOLATION BUTTONS
+========================================= */
+
+.floor-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.floor-actions button {
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  font-size: 12px;
+}
+
+/* =========================================
+   9. COMPONENT INSPECTOR
+========================================= */
+
+#component-name,
+#component-dimensions {
+  overflow-wrap: anywhere;
+}
+
+#canvas-container canvas {
+  cursor: crosshair;
+}
+
+.sidebar-note {
+  margin: 12px 0;
+  color: #9caec1;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* =========================================
+   10. CAMERA CONTROLS
+========================================= */
+
+.reset-button {
+  width: 100%;
+}
+
+/* =========================================
+   11. FOOTER
+========================================= */
+
+.footer {
+  padding: 5px 18px 20px;
+  text-align: center;
+  color: #8292a5;
+  font-size: 12px;
+}
+
+/* =========================================
+   12. RESPONSIVE LAYOUT
+========================================= */
+
+@media (max-width: 900px) {
+  .viewer-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  #app .viewer-layout > .viewer {
+    height: 560px;
+    min-height: 560px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar {
+    padding: 16px;
+  }
+
+  .topbar h1 {
+    font-size: 20px;
+  }
+
+  .topbar p {
+    font-size: 12px;
+  }
+
+  .status {
+    padding: 6px 8px;
+    font-size: 9px;
+  }
+
+  .viewer-layout {
+    gap: 14px;
+    padding: 12px;
+  }
+
+  #app .viewer-layout > .viewer {
+    height: 460px;
+    min-height: 460px;
+  }
+
+  .sidebar {
+    padding: 16px;
+  }
+
+  .viewer-help {
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    width: fit-content;
+    max-width: calc(100% - 20px);
+    font-size: 10px;
+  }
+}
